@@ -1,43 +1,41 @@
 class ChatDAO {
 
-  constructor(){
+  constructor(conn, coll){
+    this.conn = conn;
+    this.coll = coll
   }
-  listMsgs(collection){
-    return function(socket){
-  
-      collection.find().sort({_id:1}).toArray(function(error, res){
+  listMsgs(socket){
+    return  this.coll.find().sort({_id:1}, function(error, res){
         if(error) throw new Error(error);
   
         socket.emit('output', res);
+        //this.conn.close();
       });
 
      }
-  }
 
-  inputMsgs(collection, client){
-    return function(socket){
-  
-      function sendStatus(status){
-        socket.emit('status', status);
-      }
-      socket.on('input', function(data){
+  inputMsgs(socket, client){
+    //corrigir aqui
+    return socket.on('input', function(data){
         let name = data.name;
         let msg = data.msg;
   
-        if(name == "" || msg == ""){
-          sendStatus('please choose a nickname and type a message')
+        if(msg == ""){
+          return alert('please type a message')
         } else{
-          collection.insert({name: name, msg: msg}, function(){
+          this.coll.insert({name: name, msg: msg}, function(err, data){
             client.emit('output', [data]);
-            sendStatus({username:name});
+            
+            //this.conn.close();
           });
-          
-          if(collection.count() > 500){
-              collection.findAndModify({query: {}, sort:{_id: -1}, remove: true});
-          }
         }
-      });
-    }
+          
+        if(this.coll.count() > 500){
+            this.coll.findAndModify({query: {}, sort:{_id: -1}, remove: true}, function(){
+            //this.conn.close();
+          });
+        }
+    });
   }
 }
 
