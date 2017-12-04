@@ -1,0 +1,30 @@
+<%- include('header'); %>
+
+      <div class="columns">
+
+        <div class="column is-4 is-offset-4">
+          <article class="chat-body notification is-primary">
+            <div id="chat-txt" class="chat-txt">
+              <ul>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+  <div class="form columns">
+    
+    <div class="column is-4 is-offset-4 field has-addons">
+      <p class="control">
+        <input disabled id="user" class="input is-medium nickname" type="text" placeholder="Nickname" value="<%= user.user %>">
+      </p>
+      <p class="control">
+        <textarea id="msg" class="textarea message" placeholder="type your message" cols="70" rows="2"></textarea>
+      </p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+  <script src="/src/chat-logic.js" type="text/javascript"></script>
+</body>
+</html>

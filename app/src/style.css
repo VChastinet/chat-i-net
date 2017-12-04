@@ -1,0 +1,51 @@
+.chat-body{
+  height: 25rem;
+  padding:.5rem;
+  min-width: 21rem;
+}
+.chat-txt{
+  padding: .5rem;
+  border: none 1px lightgray;
+  border-radius: 3px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .8);
+  color: #1d1b1b;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 1rem;
+}
+.form input{
+  height: 4.35rem;
+}
+.nickname{
+  max-width: 7rem;
+  text-align: center;
+}
+.message{
+  min-width: 15rem;
+}
+
+/* .is-typing{
+  color: lightgray;
+  font-size: .7rem;
+  font-style: italic;
+  margin-left: 1rem;
+} */
+
+.login-form{
+  margin-top: 5rem;
+}
+.login-form .button{
+  float: right;
+  margin-top: 1rem;
+  width: 8rem;
+}
+#user-login{
+  text-transform: capitalize;
+}
+
+@media (max-width: 800px){
+  .panel{
+    display: none;
+  }
+}

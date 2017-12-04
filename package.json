@@ -1,0 +1,23 @@
+{
+  "name": "chat_i_net",
+  "version": "1.0.0",
+  "description": "showcase chat app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "victor chastinet",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bulma": "^0.6.1",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-load": "^1.1.16",
+    "mongodb": "^2.2.33",
+    "socket.io": "^2.0.4"
+  },
+  "engines": {
+    "node": "8.9.0"
+  }
+}
