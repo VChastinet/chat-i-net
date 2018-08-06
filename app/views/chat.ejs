@@ -1,20 +1,31 @@
 <%- include('header'); %>
 
-      <div class="columns">
-
-        <div class="column is-4 is-offset-4">
-          <article class="chat-body notification is-primary">
-            <div id="chat-txt" class="chat-txt">
-              <ul>
-              </ul>
-            </div>
-          </article>
+  <div class="columns">
+    
+    <div class="column is-2 is-offset-2">
+      <article class="user-list notification is-primary">
+        <p class="total-users is-bold">Users Online: <span id="total"></span></p>
+        <div id="online-users" class="online-users">
+          <ul>
+          </ul>
         </div>
-      </div>
+      </article>
+    </div>
+
+    <div class="column is-4">
+      <article class="chat-body notification is-primary">
+        <div id="chat-txt" class="chat-txt">
+          <ul>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+  </div>
 
   <div class="form columns">
     
-    <div class="column is-4 is-offset-4 field has-addons">
+    <div class="column is-5 is-offset-3 field has-addons">
       <p class="control">
         <input disabled id="user" class="input is-medium nickname" type="text" placeholder="Nickname" value="<%= user.user %>">
       </p>

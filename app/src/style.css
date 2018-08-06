@@ -1,51 +1,73 @@
-.chat-body{
+.chat-body {
   height: 25rem;
-  padding:.5rem;
+  padding: 0.5rem;
   min-width: 21rem;
 }
-.chat-txt{
-  padding: .5rem;
-  border: none 1px lightgray;
+
+.msg-li {
+  padding: 4px 0;
+}
+
+.chat-txt, .online-users {
+  padding: 0.5rem;
+  border: none;
   border-radius: 3px;
   height: 100%;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
   color: #1d1b1b;
   overflow-y: auto;
   overflow-x: hidden;
   font-size: 1rem;
+  width: 100%;
 }
-.form input{
+
+.online-users {
+  height: 92%;
+}
+
+.user-list {  
+  height: 25rem;
+  padding: 0.5rem;
+  width: 12rem;
+  margin-left: auto;
+}
+
+.user-li {
+  border-bottom: solid 1px #00d1b2;
+  padding: 7px 0;
+}
+
+#total {
+  margin-left: 7px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.form input {
   height: 4.35rem;
 }
-.nickname{
-  max-width: 7rem;
+.nickname {
+  max-width: 10rem;
   text-align: center;
 }
-.message{
+.message {
   min-width: 15rem;
 }
 
-/* .is-typing{
-  color: lightgray;
-  font-size: .7rem;
-  font-style: italic;
-  margin-left: 1rem;
-} */
-
-.login-form{
+.login-form {
   margin-top: 5rem;
 }
-.login-form .button{
+.login-form .button {
   float: right;
   margin-top: 1rem;
   width: 8rem;
 }
-#user-login{
+#user-login {
   text-transform: capitalize;
 }
 
-@media (max-width: 800px){
-  .panel{
+@media (max-width: 800px) {
+  .panel {
     display: none;
   }
 }

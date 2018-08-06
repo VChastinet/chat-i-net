@@ -4,12 +4,13 @@ function MongoConnect(app){
   const chatDAO = new app.database.ChatDAO()
 
   console.log();
-
-  return mongo.connect(process.env.MONGODB_URI, function(error, db){
+  const prod = process.env.MONGODB_URI;
+  const local = 'mongodb://127.0.0.1/mongochat';
+  return mongo.connect(prod || local, function(error, db){
   
-    if(error) throw new Error(error);
+    if (error) throw new Error(`ocorreu um erro: ${error}`);
 
-    console.log("connected to database");
+    console.log('connected to database');
 
     let client = app.get('io');
 
@@ -18,7 +19,7 @@ function MongoConnect(app){
     client.on('connection', function(socket){
       chatDAO.listMsgs(collection, socket);
       chatDAO.inputMsgs(collection, socket, client);
-      chatDAO.clearMsgs(collection, socket,client);
+      chatDAO.clearMsgs(collection, socket, client);
     });
     
   });

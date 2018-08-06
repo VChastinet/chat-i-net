@@ -1,30 +1,32 @@
-module.exports = function(app){
-var connections = [];
+module.exports = function(app) {
+  let connections = [];
+  let userList = [];
   
-  app.get('/', function(req, res){
-   res.render('login');
+  app.get('/', function(req, res) {
+    res.render('login');
   });
-
-  app.post('/chat', function(req, res){
+  
+  app.post('/chat', function(req, res) {
     const user = req.body;
+    
+    app.get('io').on('connection', function(socket) { 
+      socket.user = user.user;
 
-    app.get('io').on('connection', function(socket){
-      connections.push(socket)
-      console.log(" %s users online", connections.length);
-    
+      if (!connections.some(item => socket.id === item.id)) {
+        connections.push(socket);   
+      }
       
-      socket.emit('online now', connections.length);
-      
-      socket.on('disconnect', function(data){
-        
-        connections.splice(connections.indexOf(socket), 1)
-        console.log("user disconnected: %s still connected", connections.length);
-    
+      console.log(`User "${user.user}" is online: ${connections.length} users online`);
+      connections.map(socket => socket.emit('online now', {total: connections.length, users: connections.map(item => item.user)}))
+
+      socket.on('disconnect', function(data) {
+        connections = connections.filter(item => socket.id !== item.id);
+
+        console.log(`User disconnected: ${connections.length} still connected`)
+        connections.map(socket => socket.emit('online now', {total: connections.length, users: connections.map(item => item.user)}))
       });
     });
 
-    res.render('chat', {user: user});
-
-  })
-  
-}
+    res.render('chat', { user: user });
+  });
+};
