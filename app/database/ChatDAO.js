@@ -18,7 +18,7 @@ class ChatDAO {
         return;
       }
 
-      collection.insert({ name: name, msg: msg }, function() {
+      collection.insertOne({ name: name, msg: msg }, function() {
         client.emit('output', [data]);
       });
     });
