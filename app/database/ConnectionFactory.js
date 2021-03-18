@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 
 
 function MongoConnect(app) {
-  const uri = process.env.MONGODB_URI;
+  const uri = process.env.MONGODB_URI || 'mongodb://mongo/mongochat';
   const mongo = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   const chatDAO = new app.database.ChatDAO();
   
